@@ -59,7 +59,7 @@ library MathMasters {
             }
             // e adding 1 to x if (0 + x/y) - 1 == 0
             // @audit - high, this line is wrong and not needed
-            // if iszero(sub(div(add(z, x), y), 1)) { x := add(x, 1) }
+            if iszero(sub(div(add(z, x), y), 1)) { x := add(x, 1) }
             z := add(iszero(iszero(mod(mul(x, y), WAD))), div(mul(x, y), WAD))
         }
     }
@@ -76,15 +76,18 @@ library MathMasters {
 
             // This segment is to get a reasonable initial estimate for the Babylonian method. With a bad
             // start, the correct # of bits increases ~linearly each iteration instead of ~quadratically.
+            // 0xffffffffffffffffffffffffffffffffff
             let r := shl(7, lt(87112285931760246646623899502532662132735, x))
+            // 0xffffffffffffffffff
             r := or(r, shl(6, lt(4722366482869645213695, shr(r, x))))
+            // 0xffffffffff
             r := or(r, shl(5, lt(1099511627775, shr(r, x))))
             // Correct: 16777215 0xffffff
+            // 0xffff2a
             r := or(r, shl(4, lt(16777002, shr(r, x))))
             z := shl(shr(1, r), z)
-
+            z := shr(18, mul(z, add(shr(r, x), 65536))) // A
             // There is no overflow risk here since `y < 2**136` after the first branch above.
-            z := shr(18, mul(z, add(shr(r, x), 65536))) // A `mul()` is saved from starting `z` at 181.
 
             // Given the worst case multiplicative error of 2.84 above, 7 iterations should be enough.
             z := shr(1, add(z, div(x, z)))
