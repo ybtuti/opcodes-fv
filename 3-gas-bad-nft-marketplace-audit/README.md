@@ -1,18 +1,28 @@
-# Gas Bad NFT Marketplace 
+# Game plan
+
+1. Warm up, by verifying some stats of our NftMock
+   1. Sanity Checks ✅
+   2. Total Supply is never negative ✅
+   3. Minting mints 1 NFT ✅
+   4. Parametric Example ✅
+2. Going to formally verify alot of stuff for the GasBadNftMarketplace
+   1. Anytime mapping is updated, we emit an event
+   2. Calling any function on the gasbad marketplace, or the marketplace, they end in the same state
+
+# Gas Bad NFT Marketplace
 
 <p align="center">
 <img src="./img/gas-bad.png" width="400" alt="gas-bad">
 <br/>
 
-
-We are building a "gas bad" marketplace. An NFT marketplace, but we are going for a gas optimized version. 
+We are building a "gas bad" marketplace. An NFT marketplace, but we are going for a gas optimized version.
 
 To do this, we are writing 2 types of smart contracts:
 
-1. Reference contracts in solidity 
-2. Optimized contracts in solidity / assembly 
+1. Reference contracts in solidity
+2. Optimized contracts in solidity / assembly
 
-We will be deploying `GasBadNftMarketplace.sol` to the Ethereum mainnet, but are using `NftMarketplace.sol` as a reference point. 
+We will be deploying `GasBadNftMarketplace.sol` to the Ethereum mainnet, but are using `NftMarketplace.sol` as a reference point.
 
 <!-- <p align="center">
 <img src="./images/math-master.png" width="400" alt="gas bad nft marketplace">
@@ -39,14 +49,14 @@ We will be deploying `GasBadNftMarketplace.sol` to the Ethereum mainnet, but are
 
 # About
 
-We are building a "gas bad" marketplace. An NFT marketplace, but we are going for a gas optimized version. 
+We are building a "gas bad" marketplace. An NFT marketplace, but we are going for a gas optimized version.
 
 To do this, we are writing 2 types of smart contracts:
 
-1. Reference contracts in solidity 
-2. Optimized contracts in solidity / assembly 
+1. Reference contracts in solidity
+2. Optimized contracts in solidity / assembly
 
-We will be deploying `GasBadNftMarketplace.sol` to the Ethereum mainnet, but are using `NftMarketplace.sol` as a reference point. 
+We will be deploying `GasBadNftMarketplace.sol` to the Ethereum mainnet, but are using `NftMarketplace.sol` as a reference point.
 
 # Getting Started
 
@@ -73,7 +83,6 @@ make
 
 ## Certora
 
-
 ### Certora Setup
 
 After installing the [Certora CLI](https://docs.certora.com/en/latest/docs/user-guide/getting-started/install.html), you'll need to set up your environment variables. The instructions here only work for linux/macOs/windows WSL.
@@ -94,11 +103,12 @@ You can check if the environment variable is set by running:
 echo $CERTORAKEY
 ```
 
-### Running Certora 
+### Running Certora
 
 In this repo, we will be heavily relying on Certora to make sure our codebase is good! We have the following specs:
+
 - `GasBadNft.spec`: For formally verifying the `GasBadNftContract.sol`
-- `NftMock.spec`: For showcasing some cool Certora functionality 😊 
+- `NftMock.spec`: For showcasing some cool Certora functionality 😊
 
 The two main commands to run the specs, respectively are:
 
@@ -129,7 +139,7 @@ forge coverage --report debug
 
 # Audit Scope Details
 
-- Commit Hash: 
+- Commit Hash:
 - In Scope:
 
 ```
@@ -139,7 +149,7 @@ forge coverage --report debug
 ## Compatibilities
 
 - Solc Version: 0.8.20
-- Chain(s) to deploy contract to: 
+- Chain(s) to deploy contract to:
   - Ethereum
 - Tokens:
   - None
